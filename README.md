@@ -14,8 +14,7 @@ With the next content:
 </Weavers>
 ```
 
-# Example
-It's very simple. 
+# Getting started
 1. Add this to the file header:
 ```csharp
 using RAExt;
