@@ -1,6 +1,7 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Realms;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RAExt
 {
@@ -14,15 +15,10 @@ namespace RAExt
         public event ErrorDelegate OnError;
         public event CompleteDelegate OnComplete;
 
-        private Realm realm;
+        public Realm realm;
         
         public RaeDatabase(string filename = "rae_items.realm")
         {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<ItemData, ItemDataRealm>();
-                cfg.CreateMap<ItemDataRealm, ItemData>();
-            });
             InitRealm(filename);
         }
 
@@ -30,18 +26,28 @@ namespace RAExt
         {
             var config = new RealmConfiguration(filename);
             RealmConfiguration.DefaultConfiguration = config;
-            var realm = Realm.GetInstance();   
+            realm = Realm.GetInstance();   
         }
 
-        public void ToRealm(ItemData[] items)
+        public void SaveToRealm(ItemDataUnmanaged[] items)
         {
-            realm.RemoveAll();
-            int current = 0, total = items.Length;;
+            var managedItems = new ItemData[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                managedItems[i] = ItemData.FromUnmanaged(items[i]);
+            }
+            SaveToRealm(managedItems);
+        }
+
+        public void SaveToRealm(ItemData[] items)
+        {
+            int current = 0, total = items.Length;
             using (var trans = realm.BeginWrite())
             {
-                foreach (var itemData in items)
+	            //realm.RemoveAll()
+				foreach (var itemData in items)
                 {
-                    realm.Add(ItemDataRealm.FromUnmanaged(itemData));
+                    realm.Add(itemData);
 
                     if (OnProgress == null) continue;
                     if (++current % 10 == 0 || current == total)
@@ -52,16 +58,42 @@ namespace RAExt
             
             Realm.Compact();
             realm.Dispose();
-            if (OnComplete != null)
-                OnComplete();
+	        OnComplete?.Invoke();
         }
 
-        public ItemData GetItem(int id)
+	    public void RemoveAll() => realm.Write(() => realm.RemoveAll());
+	    public void CloseRealm()
+	    {
+		    Realm.Compact();
+		    realm.Dispose();
+	    }
+	    
+	    
+			//Realm.DeleteRealm(RealmConfiguration.DefaultConfiguration);
+
+	 //   private Transaction transaction;
+		//public void BeginWrite()
+		//{
+		//	transaction = realm.BeginWrite();
+		//}
+		//public void AddItem()
+		//{
+		//	transaction = realm.BeginWrite();
+		//}
+		//public void EndWrite()
+		//{
+		//	transaction.Commit();
+		//	transaction.Dispose();
+		//}
+
+
+		public ItemData GetItem(int id, ItemType itemType = ItemType.Matter)
         {
-            if(realm == null)
-                InitRealm();
-            var rItem = realm.Find<ItemDataRealm>(id);
-            return ItemData.FromManaged(rItem);
-        }
+			if (realm == null) InitRealm();
+	        if(itemType > ItemType._PW_STARTS_HERE_)
+		        return realm.All<ItemData>().FirstOrDefault(i => i.Id == id && i.iListType == (int)itemType);
+		    else
+				return realm.All<ItemData>().FirstOrDefault(i => i.Id == id && i.iItemType == (int)itemType);
+		}
     }
 }

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAE_Extensions", "RAE_Extensions\RAE_Extensions.csproj", "{1D1F1A99-F933-47BF-A293-868F03470712}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{71C2EB50-1696-4D41-AF44-75E2A2CAB2DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAExt", "RAExt\RAExt.csproj", "{15DC198D-A8F4-473C-BDA2-387F0F1C427E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +10,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D1F1A99-F933-47BF-A293-868F03470712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D1F1A99-F933-47BF-A293-868F03470712}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D1F1A99-F933-47BF-A293-868F03470712}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D1F1A99-F933-47BF-A293-868F03470712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71C2EB50-1696-4D41-AF44-75E2A2CAB2DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71C2EB50-1696-4D41-AF44-75E2A2CAB2DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71C2EB50-1696-4D41-AF44-75E2A2CAB2DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DC198D-A8F4-473C-BDA2-387F0F1C427E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DC198D-A8F4-473C-BDA2-387F0F1C427E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DC198D-A8F4-473C-BDA2-387F0F1C427E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DC198D-A8F4-473C-BDA2-387F0F1C427E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
