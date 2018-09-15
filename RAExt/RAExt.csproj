@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Authors>Rody66</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Rody's Angelica Editor Extensions Library</Description>
+    <PackageProjectUrl>https://rodysoft.ru/</PackageProjectUrl>
+    <PackageIconUrl>https://rodysoft.ru/favicon.ico</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Rody66/RAExt</RepositoryUrl>
+    <PackageTags>rae</PackageTags>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Realm.Database" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\MetroParser\EmailExtractor\RealmExtensions.cs">
+      <Link>RealmExtensions.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
