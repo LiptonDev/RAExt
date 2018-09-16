@@ -2,6 +2,9 @@ using Realms;
 
 namespace RAExt
 {
+    /// <summary>
+    /// Item icon.
+    /// </summary>
     public class ItemIcon : RealmObject
     {
         public ItemIcon()
@@ -14,8 +17,15 @@ namespace RAExt
             Bytes = bytes;
         }
 
+        /// <summary>
+        /// Icon name.
+        /// </summary>
         [PrimaryKey]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Icon image.
+        /// </summary>
         public byte[] Bytes { get; set; }
     }
 }
