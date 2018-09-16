@@ -30,7 +30,7 @@ var item = db.GetItem(11208);
 Console.WriteLine(item.Name);
 Console.WriteLine(item.ToJson());
 ```
-4. Don't forget to close realm file when your app closing or you don't need any items anymore:
+4. Don't forget to close realm file when your app is closing or you don't need any items anymore:
 ```csharp
 db.CloseRealm();
 ```
